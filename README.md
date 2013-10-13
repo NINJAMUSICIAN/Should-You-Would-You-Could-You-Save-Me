@@ -25,6 +25,8 @@ too. this allows for the different types of zombies to be used in multiple ways.
 
 Different Enemies:
 
+Waiters: Stand still until they see Rachel and then walk in her direction.
+
 Walkers: walkers... well they walk around in circles until they see Rachel. at which point they will begin to walk
 in her direction
 
