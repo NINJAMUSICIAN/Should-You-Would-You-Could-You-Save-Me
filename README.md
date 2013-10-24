@@ -43,6 +43,9 @@ Moving Spitters: same as stationaries but these ones can move.
 
 Saw-Blades: Kill everything that touches them. Meatboy style.
 
+All-Seeing Eye: If a zombie who has seen the player walks over the eye, the zombies knowledge is given to the eye
+who tells all other zombies where the player is. Makes every zombie see and chase the player
+
 
 
 Possible Stuff:
@@ -59,5 +62,3 @@ Weapons:
 Baseball Bat - short-range melee weak
 
 pistol - long range gun weak
-
-sword - short range melee strong
