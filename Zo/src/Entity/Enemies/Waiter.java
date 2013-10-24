@@ -88,26 +88,25 @@ public class Waiter extends Enemy{
 	
 	public void getNextPosition(){
 		if(up){
+			facingUp = true;
+			facingDown = false;
 			dy -= moveSpeed;
 			if(dy < -maxSpeed){
 				dy = -maxSpeed;
 			}
 		}else if(down){
+			facingUp = false;
+			facingDown = true;
 			dy += moveSpeed;
 			if(dy > maxSpeed){
 				dy = maxSpeed;
 			}
 		} else {
 			if(dy > 0){
-				dy -= stopSpeed;
-				if(dy < 0){
-					dy = 0;
-				}
+				dy = 0;
+				
 			}else if(dy < 0){
-				dy += stopSpeed;
-				if(dy > 0){
-					dy = 0;
-				}
+				dy = 0;
 			}	
 		}
 		if(right){

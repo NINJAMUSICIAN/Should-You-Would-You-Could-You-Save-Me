@@ -11,6 +11,7 @@ import Entity.Enemies.Enemy;
 import Entity.Enemies.Pacer;
 import Entity.Enemies.Sprinter;
 import Entity.Enemies.Waiter;
+import Entity.Enemies.Walker;
 import Main.GamePanel;
 import TileMap.TileMap;
 
@@ -26,6 +27,7 @@ public class BlankLevel extends GameState {
 	private ArrayList<Waiter> waiters;
 	private ArrayList<Sprinter> sprinters;
 	private ArrayList<Pacer> pacers;
+	private ArrayList<Walker> walkers;
 	private ArrayList<Enemy> enemies;
 	
 	public BlankLevel(GameStateManager gsm){
@@ -51,44 +53,33 @@ public class BlankLevel extends GameState {
 		sprinters = new ArrayList<Sprinter>();
 		waiters = new ArrayList<Waiter>();
 		pacers = new ArrayList<Pacer>();
+		walkers = new ArrayList<Walker>();
 		enemies = new ArrayList<Enemy>();
 		
 		Sprinter s;
 		Waiter w;
 		Pacer p;
+		Walker wa;
 		
 		Point pacePoints[] = new Point[]{
 				new Point(300, 400)
 		};
 		
 		for(int i = 0; i < pacePoints.length; i++){
-			p = new Pacer(tileMap, 2, "up", 5);
-			p.setPosition(pacePoints[i].x, pacePoints[i].y);
-			p.init(pacePoints[i].x, pacePoints[i].y);
-			pacers.add(p);
-			enemies.add(p);
-			
+			wa = new Walker(tileMap, 0, "down");
+			wa.setPosition(pacePoints[i].x, pacePoints[i].y);
+			wa.init();
+			enemies.add(wa);
+			walkers.add(wa);
 		}
 		
-//		Point waitPoints[] = new Point[]{
-//		};
-//		for(int i = 0; i < waitPoints.length; i++){
-//			w = new Waiter(tileMap, 0, "down");
-//			w.setPosition(waitPoints[i].x, waitPoints[i].y);
-//			waiters.add(w);
-//			enemies.add(w);
-//		}
-//		
-		
-		
-//		Point sprintPoints[] = new Point[]{
-//		};
-		
-//		for(int i = 0; i < sprintPoints.length; i++){
-//			s = new Sprinter(tileMap, 2, "up");
-//			s.setPosition(sprintPoints[i].x, sprintPoints[i].y);
-//			enemies.add(s);
-//			sprinters.add(s);
+//		for(int i = 0; i < pacePoints.length; i++){
+//			p = new Pacer(tileMap, 2, "up", 5);
+//			p.setPosition(pacePoints[i].x, pacePoints[i].y);
+//			p.init(pacePoints[i].x, pacePoints[i].y);
+//			pacers.add(p);
+//			enemies.add(p);
+//			
 //		}
 		
 	}
@@ -96,6 +87,11 @@ public class BlankLevel extends GameState {
 	public void update() {
 		player.update();
 		player.checkAttack(enemies);
+		
+		for(int i = 0; i < walkers.size(); i++){
+			Walker wa = walkers.get(i);
+			wa.whereToGo(player);
+		}
 		
 //		for(int i = 0; i < waiters.size(); i++){
 //			Waiter w = waiters.get(i);
@@ -107,10 +103,10 @@ public class BlankLevel extends GameState {
 //			s.Sprint(player);
 //		}
 		
-		for(int i = 0; i < pacers.size(); i++){
-			Pacer p = pacers.get(i);
-			p.whereToGo(player);
-		}
+//		for(int i = 0; i < pacers.size(); i++){
+//			Pacer p = pacers.get(i);
+//			p.whereToGo(player);
+//		}
 		
 		for(int i = 0; i < enemies.size(); i++){
 			Enemy e = enemies.get(i);
