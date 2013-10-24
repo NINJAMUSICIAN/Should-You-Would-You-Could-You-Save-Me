@@ -268,13 +268,13 @@ public class Pacer extends Enemy{
 		}
 	}	
 	public void pace(){
-		//if(follow == 0){
+		if(follow == 0){
 			if(facingRight || facingLeft()){
 				walkSideways();
 			}else if(facingUp || facingDown){
 				walkVertical();
 			}//if up or down
-	//	}//if follow = 0
+		}//if follow = 0
 	}
 	public void followPlayer(Rachel r){
 		
@@ -305,7 +305,12 @@ public class Pacer extends Enemy{
 			}
 		}
 	}
-
+	public void whereToGo(Rachel r){
+		followPlayer(r);
+		if(follow == 0){
+			pace();
+		}
+	}
 	public void update(){
 		
 		getNextPosition();
@@ -324,7 +329,7 @@ public class Pacer extends Enemy{
 			}//if elapsed
 		}//if flinching
 		
-		if(dy == 0){
+		if((follow == 0 && dy == 0) || (follow > 0 && (dx > dy || dx < dy))){
 			if(currentAction != SIDE){
 				currentAction = SIDE;
 				animation.setFrames(sprites.get(SIDE));

@@ -109,10 +109,7 @@ public class BlankLevel extends GameState {
 		
 		for(int i = 0; i < pacers.size(); i++){
 			Pacer p = pacers.get(i);
-//			p.followPlayer(player);
-			//p.walkSideways();
-			p.walkVertical();
-			
+			p.whereToGo(player);
 		}
 		
 		for(int i = 0; i < enemies.size(); i++){
