@@ -98,11 +98,15 @@ public class Pacer extends Enemy{
 
 	public void getNextPosition(){
 		if(up){
+			facingUp = true;
+			facingDown = false;
 			dy -= moveSpeed;
 			if(dy < -maxSpeed){
 				dy = -maxSpeed;
 			}
 		}else if(down){
+			facingUp = false;
+			facingDown = true;
 			dy += moveSpeed;
 			if(dy > maxSpeed){
 				dy = maxSpeed;
@@ -265,10 +269,9 @@ public class Pacer extends Enemy{
 	}	
 	public void pace(){
 		//if(follow == 0){
-			if(right || left){
+			if(facingRight || facingLeft()){
 				walkSideways();
-			}
-			if(up || down){
+			}else if(facingUp || facingDown){
 				walkVertical();
 			}//if up or down
 	//	}//if follow = 0
