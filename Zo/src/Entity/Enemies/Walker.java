@@ -191,7 +191,7 @@ public class Walker extends Enemy{
 		System.out.println("go " + randMove);
 		}
 	public void move(){
-		if(walk){
+		
 		if(facingRight){
 			setLeft(false);
 			setRight(true);
@@ -213,30 +213,42 @@ public class Walker extends Enemy{
 			setUp(false);
 			setDown(true);
 		}
-		}
+		
 	}	
 	public void switchDirection(){
 		Random r = new Random();
 		
 		int nextAction = r.nextInt(4);
 		if(nextAction == 0){
+			facingUp = true;
+			facingRight = false;
+			facingDown = false;
 			setLeft(false);
 			setRight(false);
 			setUp(true);
 			setDown(false);
-			facingUp = true;
+			
+			
+
 		}else if(nextAction == 1){
+			facingDown = true;
+			facingRight = false;
+			facingUp = false;
 			setLeft(false);
 			setRight(false);
 			setUp(false);
 			setDown(true);
-			facingDown = true;
+			//facingDown = false;
+
 		}else if(nextAction == 2){
+			facingRight = true;
+			facingUp = false;
+			facingDown = false;
 			setLeft(false);
 			setRight(true);
 			setUp(false);
 			setDown(false);
-			facingRight = true;
+			//facingRight = false;
 		}else{
 			setLeft(true);
 			setRight(false);
@@ -368,7 +380,7 @@ public class Walker extends Enemy{
 			}
 		}
 		
-		if((follow == 0 && dy == 0) || (follow > 0 && (dx > dy || dx < dy))){
+		if((follow == 0 && dy == 0) && (facingRight || facingLeft()) || (follow > 0 && (dx > dy || dx < dy))){
 			if(currentAction != SIDE){
 				currentAction = SIDE;
 				animation.setFrames(sprites.get(SIDE));
