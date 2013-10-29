@@ -62,15 +62,15 @@ public class BlankLevel extends GameState {
 		Walker wa;
 		
 		Point pacePoints[] = new Point[]{
-				new Point(300, 400)
+				new Point(120, 1072),
+				new Point(600, 1072)
 		};
 		
 		for(int i = 0; i < pacePoints.length; i++){
-			wa = new Walker(tileMap, 0, "down");
-			wa.setPosition(pacePoints[i].x, pacePoints[i].y);
-			wa.init();
-			enemies.add(wa);
-			walkers.add(wa);
+			s = new Sprinter(tileMap, 1, "right");
+			s.setPosition(pacePoints[i].x, pacePoints[i].y);
+			enemies.add(s);
+			sprinters.add(s);
 		}
 		
 //		for(int i = 0; i < pacePoints.length; i++){
@@ -98,10 +98,10 @@ public class BlankLevel extends GameState {
 //			w.followPlayer(player);
 //		}
 //		
-//		for(int i = 0; i < sprinters.size(); i++){
-//			Sprinter s = sprinters.get(i);
-//			s.Sprint(player);
-//		}
+		for(int i = 0; i < sprinters.size(); i++){
+			Sprinter s = sprinters.get(i);
+			s.Sprint(player, sprinters);
+		}
 		
 //		for(int i = 0; i < pacers.size(); i++){
 //			Pacer p = pacers.get(i);
