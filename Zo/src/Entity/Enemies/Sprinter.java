@@ -176,6 +176,20 @@ public class Sprinter extends Enemy{
 			return false;
 		}
 
+		public boolean hitByOther(ArrayList<Sprinter> s){
+			boolean runNow = false;
+			for(int i = 0; i < s.size(); i++){
+				Sprinter sp = s.get(i);
+				if(intersects(s.get(i))){
+				runNow = true;
+				}else{
+					runNow = false;
+				}
+			}
+			return runNow;
+			
+		}
+		
 		public boolean beganSprinting(){
 			if(dx > 0 || dx < 0 || dy > 0 || dy < 0){
 				return true;
@@ -184,7 +198,7 @@ public class Sprinter extends Enemy{
 			}
 		}
 		
-		public void Sprint(Rachel r){
+		public void Sprint(Rachel r, ArrayList<Sprinter> s){
 			if(seePlayer(r)){
 				follow++;
 			}
