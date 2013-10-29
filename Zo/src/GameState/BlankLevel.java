@@ -38,12 +38,12 @@ public class BlankLevel extends GameState {
 	public void init() {
 		tileMap = new TileMap(32);
 		tileMap.loadTiles("/Tilesets/Tileset.png");
-		tileMap.loadMap("/Maps/BlankMap.map");
-		tileMap.setPosition(-32, -32);
+		tileMap.loadMap("/Maps/Test.map");
 		tileMap.setTween(1);
+		tileMap.setPosition(-0, -760);
 		
 		player = new Rachel("/Sprites/TheGirl.png", tileMap);
-		player.setPosition(810, 660); //840 660
+		player.setPosition(48, 1072); //Room 4: 48, 1072 || Room 1 :48, 352 || Room 3 2096, 352
 		
 		populateEnemies();
 		
@@ -119,9 +119,7 @@ public class BlankLevel extends GameState {
 			
 		}
 		
-		tileMap.setPosition(
-				GamePanel.WIDTH / 2 - player.getX() ,
-				GamePanel.HEIGHT / 2 - player.getY());
+		tileMap.autoScroll(player);
 		
 	}
 

@@ -1,11 +1,14 @@
 package TileMap;
 
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import java.io.*;
 import javax.imageio.ImageIO;
 
+import Entity.Rachel;
 import Main.GamePanel;
 
 public class TileMap {
@@ -100,7 +103,7 @@ public class TileMap {
 			
 			xmin = GamePanel.WIDTH - width;
 			xmax = 0;
-			ymin = GamePanel.HEIGHT - height + 100;
+			ymin = GamePanel.HEIGHT - height;
 			ymax = 0;
 			
 			String delims = "\\s+";
@@ -119,6 +122,26 @@ public class TileMap {
 		
 	}
 	
+	public void autoScroll(Rachel r){
+		
+		if(r.getYScreen() < 30 && r.isFacingUp()){
+			setPosition(x, y + 750);
+			r.setPosition(r.getX(), r.getY() - 50);
+		}
+		if(r.getYScreen() > GamePanel.HEIGHT - 30 && r.isFacingDown()){
+			setPosition(x, y - 750);
+			r.setPosition(r.getX(), r.getY() + 50);
+		}
+		if(r.getXScreen() > GamePanel.WIDTH && r.isFacingRight()){
+			setPosition(x - 1024, y);
+			r.setPosition(r.getX() + 50, r.getY());
+		}
+		if(r.getXScreen() < 30 && r.facingLeft()){
+			setPosition(x + 1024, y);
+			r.setPosition(r.getX() - 50, r.getY());
+		}
+	}
+	
 	public int getTileSize() { return tileSize; }
 	public double getx() { return x; }
 	public double gety() { return y; }
@@ -134,14 +157,17 @@ public class TileMap {
 	
 	public void setTween(double d) { tween = d; }
 	
-	public void setPosition(double x, double y) {
+	public void setPosition(double r, double c) {
 		
 		//System.out.println(x);
 		//System.out.println(this.x);
 		//System.out.println((x - this.x) * tween);
 		
-		this.x += (x - this.x) * tween;
-		this.y += (y - this.y) * tween;
+		this.x += (r - this.x) * tween;
+		this.y += (c - this.y) * tween;
+//		
+//		this.y -= r * tween;
+//		this.x -= c * tween;
 		
 		fixBounds();
 		

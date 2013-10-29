@@ -188,7 +188,6 @@ public class Walker extends Enemy{
 				decide++;
 				
 			}
-		System.out.println("go " + randMove);
 		}
 	public void move(){
 		
@@ -282,7 +281,6 @@ public class Walker extends Enemy{
 			decide--;
 			
 		}
-		System.out.println("pause " + elapsed + "  " + randPause);
 		
 	}
 

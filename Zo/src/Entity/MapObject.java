@@ -168,6 +168,13 @@ public abstract class MapObject {
 		return cheight;
 	}
 
+	public double getYScreen(){
+		return y + ymap;
+	}
+	public double getXScreen(){
+		return x + xmap;
+	}
+	
 	public void setPosition(double x, double y){
 		this.x = x;
 		this.y = y;

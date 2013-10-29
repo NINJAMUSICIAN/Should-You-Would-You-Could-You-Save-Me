@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import Entity.Enemies.Enemy;
+import Main.GamePanel;
 import TileMap.TileMap;
 
 public class Rachel extends MapObject{
@@ -114,6 +115,10 @@ public class Rachel extends MapObject{
 	public void setAmmo(int amount){
 		maxAmmunition = amount;
 	}
+	
+	public boolean isFacingUp(){return facingUp;}
+	public boolean isFacingDown(){return facingDown;}
+	public boolean isFacingRight(){return facingRight;}
 	
 	public void setPummeling(){
 		pummeling = true;
@@ -249,6 +254,8 @@ public class Rachel extends MapObject{
 		}
 	}
 	
+	
+	
 	public void setSprites(){
 		if(facingDown){
 			
@@ -277,6 +284,9 @@ public class Rachel extends MapObject{
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
+		
+		System.out.println(getXScreen());
+		System.out.println(GamePanel.WIDTH);
 		
 		if(currentAction == BATUP ||currentAction == BATSIDE || currentAction == BATDOWN){
 			if(animation.hasPlayedOnce()){ pummeling = false; 

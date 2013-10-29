@@ -62,3 +62,8 @@ Weapons:
 Baseball Bat - short-range melee weak
 
 pistol - long range gun weak
+
+Number Things:
+
+Room Width = 32
+Room Height = 23
