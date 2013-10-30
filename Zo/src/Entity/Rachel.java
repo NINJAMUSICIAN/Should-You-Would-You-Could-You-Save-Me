@@ -132,6 +132,8 @@ public class Rachel extends MapObject{
 		dx = x;
 	}
 	
+	public void setDy(double y){dy = y;}
+	
 	public void setCurrentAction(int action){
 		currentAction = action;
 	}
@@ -253,8 +255,7 @@ public class Rachel extends MapObject{
 			
 		}
 	}
-	
-	
+
 	
 	public void setSprites(){
 		if(facingDown){
@@ -285,8 +286,7 @@ public class Rachel extends MapObject{
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
-		System.out.println(getXScreen());
-		System.out.println(GamePanel.WIDTH);
+		
 		
 		if(currentAction == BATUP ||currentAction == BATSIDE || currentAction == BATDOWN){
 			if(animation.hasPlayedOnce()){ pummeling = false; 

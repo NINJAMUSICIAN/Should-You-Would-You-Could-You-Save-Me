@@ -317,10 +317,7 @@ public class Pacer extends Enemy{
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
-		//System.out.println("x " + x + " end x " + endingX);
-		System.out.println("y " + y + " end y " + endingY);
-		System.out.println(startingY);
-		System.out.println(up);
+		System.out.println("x " + y + " end x " + endingY);
 		
 		if(flinching){
 			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
