@@ -73,10 +73,10 @@ public class BlankLevel extends GameState {
 		
 		
 		Point[] downSprintPoints = new Point[]{ 
-				new Point(784, 464),
-				new Point(656, 464),
-				new Point(528, 464),
-				new Point(400, 464),
+				new Point(784, 432),
+				new Point(656, 432),
+				new Point(528, 432),
+				new Point(400, 432),
 				new Point(208, 560),
 				new Point(176, 48),
 				new Point(304, 48),
@@ -93,7 +93,24 @@ public class BlankLevel extends GameState {
 			sprinters.add(s);
 		}
 		
+		Point[] UpSprintPoints = new Point[]{ 
+				new Point(848, 688),
+				new Point(720, 688),
+				new Point(592, 688),
+				new Point(464, 688),
+				new Point(368, 272),
+				new Point(496, 272),
+				new Point(624, 272),
+				new Point(752, 272),
+				};
 		
+
+		for(int i = 0; i < UpSprintPoints.length; i++){
+			s = new Sprinter(tileMap, 2, "up");
+			s.setPosition(UpSprintPoints[i].x, UpSprintPoints[i].y);
+			enemies.add(s);
+			sprinters.add(s);
+		}
 		
 		Point[] pacePoints = new Point[]{
 				new Point(1500, 960)
