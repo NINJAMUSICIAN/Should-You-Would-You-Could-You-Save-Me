@@ -41,7 +41,7 @@ public class BlankLevel extends GameState {
 		tileMap.loadTiles("/Tilesets/Tileset.png");
 		tileMap.loadMap("/Maps/Test.map");
 		tileMap.setTween(1);
-		tileMap.setPosition(-0, -760);
+		tileMap.setPosition(-0, -760);// -0, -760
 		
 		player = new Rachel("/Sprites/TheGirl.png", tileMap);
 		player.setPosition(48, 1072); //Room 4: 48, 1072 || Room 1 :48, 352 || Room 3 2096, 352
@@ -112,18 +112,60 @@ public class BlankLevel extends GameState {
 			sprinters.add(s);
 		}
 		
-		Point[] pacePoints = new Point[]{
-				new Point(1500, 960)
-		};
+		Point[] DownPacePoints = new Point[]{ 
+				new Point(2192, 52),
+				new Point(2512, 52),
+				new Point(2800, 52),
+				};
 		
-		for(int i = 0; i < pacePoints.length; i++){
-			p = new Pacer(tileMap, 2, "down", 5);
-			p.setPosition(pacePoints[i].x, pacePoints[i].y);
-			p.init(pacePoints[i].x, pacePoints[i].y);
+		for(int i = 0; i < DownPacePoints.length; i++){
+			p = new Pacer(tileMap, 2, "down", 3.7);
+			p.setPosition(DownPacePoints[i].x, DownPacePoints[i].y);
+			p.init(DownPacePoints[i].x, DownPacePoints[i].y);
 			pacers.add(p);
 			enemies.add(p);
 			
 		}
+		
+		Point[] UpPacePoints = new Point[]{ 
+				new Point(2352, 172),
+				new Point(2672, 172),
+				};
+		
+		for(int i = 0; i < UpPacePoints.length; i++){
+			p = new Pacer(tileMap, 2, "up", 3.7);
+			p.setPosition(UpPacePoints[i].x, UpPacePoints[i].y);
+			p.init(UpPacePoints[i].x, UpPacePoints[i].y);
+			pacers.add(p);
+			enemies.add(p);
+			
+		}
+		
+		Point[] RightPacePoints = new Point[]{ 
+				new Point(2896, 336),
+				new Point(2896, 592),
+				};
+		
+		for(int i = 0; i < RightPacePoints.length; i++){
+			p = new Pacer(tileMap, 1, "right", 3.7);
+			p.setPosition(RightPacePoints[i].x, RightPacePoints[i].y);
+			p.init(RightPacePoints[i].x, RightPacePoints[i].y);
+			pacers.add(p);
+			enemies.add(p);	
+		}
+		
+		Point[] LeftPacePoints = new Point[]{ 
+				new Point(3024, 464),
+				};
+		
+		for(int i = 0; i < LeftPacePoints.length; i++){
+			p = new Pacer(tileMap, 1, "left", 3.7);
+			p.setPosition(LeftPacePoints[i].x, LeftPacePoints[i].y);
+			p.init(LeftPacePoints[i].x, LeftPacePoints[i].y);
+			pacers.add(p);
+			enemies.add(p);	
+		}
+		
 		
 	}
 	
@@ -158,7 +200,11 @@ public class BlankLevel extends GameState {
 		
 		for(int i = 0; i < pacers.size(); i++){
 			Pacer p = pacers.get(i);
+			if(p.getXScreen() > 0 && p.getXScreen() < 1024){
+				if(p.getYScreen() > 0 && p.getYScreen() < 1024){
 			p.whereToGo(player);
+				}
+			}
 		}
 		
 		for(int i = 0; i < enemies.size(); i++){

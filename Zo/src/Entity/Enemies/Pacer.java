@@ -19,7 +19,7 @@ public class Pacer extends Enemy{
 	
 	//player finding stuff
 	private int follow = 0;
-	private int walkLength;
+	private double walkLength;
 	
 	private TileMap tm;
 	
@@ -32,7 +32,7 @@ public class Pacer extends Enemy{
 	private static final int SIDE = 1;
 	private static final int UP = 2;
 	
-	public Pacer(TileMap tm, int startingAction, String s, int walkLength){
+	public Pacer(TileMap tm, int startingAction, String s, double walkLength){
 		super(tm);
 		this.tm = tm;
 		this.walkLength = walkLength;
@@ -168,7 +168,7 @@ public class Pacer extends Enemy{
 	}
 	
 	public boolean seePlayer(Rachel r){
-		
+		if(distanceToPlayer(r) < (walkLength * tm.getTileSize())){
 		if(facingRight){
 			if(
 				r.getX() > x &&
@@ -199,6 +199,7 @@ public class Pacer extends Enemy{
 				r.getX() < x + height / 2
 				){
 				return true;
+				}
 			}
 		}
 		return false;
