@@ -10,6 +10,7 @@ import Entity.Finish;
 import Entity.Rachel;
 import Entity.Enemies.Enemy;
 import Entity.Enemies.Pacer;
+import Entity.Enemies.Spitter;
 import Entity.Enemies.Sprinter;
 import Entity.Enemies.Waiter;
 import Entity.Enemies.Walker;
@@ -28,6 +29,7 @@ public class BlankLevel extends GameState {
 	private ArrayList<Sprinter> sprinters;
 	private ArrayList<Pacer> pacers;
 	private ArrayList<Walker> walkers;
+	private ArrayList<Spitter> spitters;
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Door> doors;
 	
@@ -63,13 +65,19 @@ public class BlankLevel extends GameState {
 		waiters = new ArrayList<Waiter>();
 		pacers = new ArrayList<Pacer>();
 		walkers = new ArrayList<Walker>();
+		spitters = new ArrayList<Spitter>();
 		enemies = new ArrayList<Enemy>();
 		
 		Sprinter s;
 		Waiter w;
 		Pacer p;
 		Walker wa;
+		Spitter sp;
 		
+		sp = new Spitter(tileMap, 2, "up");
+		sp.setPosition(900, 1072);
+		spitters.add(sp);
+		enemies.add(sp);
 		
 		
 		Point[] downSprintPoints = new Point[]{ 
@@ -174,6 +182,9 @@ public class BlankLevel extends GameState {
 		player.checkAttack(enemies);
 		
 	
+		for(int i = 0; i < spitters.size(); i++){
+			spitters.get(i).checkSpitHit(player);
+		}
 		
 		for(int i = 0; i < walkers.size(); i++){
 			Walker wa = walkers.get(i);
