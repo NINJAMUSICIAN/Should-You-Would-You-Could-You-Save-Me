@@ -207,7 +207,25 @@ private int follow = 0;
 	
 	public void draw(Graphics2D g){
 		setMapPosition();
-		super.draw(g);
+		if(facingRight) {
+			g.drawImage(
+				animation.getImage(),
+				(int)(x + xmap - width / 2),
+				(int)(y + ymap - height / 2),
+				null
+			);
+		}
+		else {
+			g.drawImage(
+				animation.getImage(),
+				(int)(x + xmap - width / 2 + width),
+				(int)(y + ymap - height / 2),
+				((-width * 2) / 4) * 3,
+				height,
+				null
+			);
+			}
+		
 		
 		for(int i = 0; i < spits.size(); i++){
 			spits.get(i).draw(g);

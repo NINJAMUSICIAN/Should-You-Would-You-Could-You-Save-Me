@@ -20,12 +20,15 @@ public class Door extends Enemy{
 	private static final int SIDE2 = 2;
 	private static final int SIDE3 = 3;
 	
+	
+	
 	private static String dir;
 	private static int wh;
 	private static int rx;
 	private static int ry;
 	private static String cond;
 	private static int cnum;
+	private static int killed = 0;
 	
 	public Door(int wh, int rx, int ry, String dir, String cond, int cnum, TileMap tm){
 		super(tm);
@@ -129,10 +132,10 @@ public class Door extends Enemy{
 				r.setDy(1);
 			}else if(r.facingLeft()){
 				r.setLeft(false);
-				r.setDx(1);
+				r.setDx(3);
 			}else if(r.facingRight){
 				r.setRight(false);
-				r.setDx(-1);
+				r.setDx(-3);
 			}else{
 				r.setDown(false);
 				r.setDy(-1);
@@ -145,7 +148,7 @@ public class Door extends Enemy{
 	}
 	
 	public void killOpen(ArrayList<Enemy> e, Rachel r){
-			int killed = 0;
+			
 		if(getXScreen() > 0 && r.getXScreen() > 0){
 			for(int i = 0; i < e.size(); i++){
 				Enemy en = e.get(i);

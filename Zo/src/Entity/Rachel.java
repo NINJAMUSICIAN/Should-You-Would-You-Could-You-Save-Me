@@ -282,6 +282,10 @@ public class Rachel extends MapObject{
 	
 	public void update(){
 		
+		if(health == 0){
+			System.exit(0);
+		}
+		
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);

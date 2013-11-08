@@ -55,8 +55,8 @@ public class BlankLevel extends GameState {
 	public void populateDoors(){
 		doors = new ArrayList<Door>();
 		
-		Door d = new Door(3, 1024, 720, "hor", "kill", 1, tileMap);
-		d.setPosition(1904, 784);
+		Door d = new Door(3, 1024, 0, "vertical", "kill", 2, tileMap);
+		d.setPosition(1040, 528);
 		doors.add(d);
 	}
 	
@@ -74,10 +74,31 @@ public class BlankLevel extends GameState {
 		Walker wa;
 		Spitter sp;
 		
-		sp = new Spitter(tileMap, 2, "up");
-		sp.setPosition(900, 1072);
-		spitters.add(sp);
-		enemies.add(sp);
+		Point[] leftSpitPoints = new Point[]{
+				new Point(1999, 239),
+				new Point(1999, 271)
+		};
+		
+		for(int i = 0; i < leftSpitPoints.length; i++){
+			sp = new Spitter(tileMap, 1, "left");
+			sp.setPosition(leftSpitPoints[i].x, leftSpitPoints[i].y);
+			spitters.add(sp);
+			enemies.add(sp);
+		}
+		
+		Point[] rightSpitPoints = new Point[]{
+				new Point(1264, 239),
+				new Point(1264, 271)
+		};
+		
+		for(int i = 0; i < rightSpitPoints.length; i++){
+			sp = new Spitter(tileMap, 1, "right");
+			sp.setPosition(rightSpitPoints[i].x, rightSpitPoints[i].y);
+			spitters.add(sp);
+			enemies.add(sp);
+		}
+		
+		
 		
 		
 		Point[] downSprintPoints = new Point[]{ 
@@ -174,6 +195,17 @@ public class BlankLevel extends GameState {
 			enemies.add(p);	
 		}
 		
+		Point[] DownWaitPoints = new Point[]{ 
+				new Point(1104, 368),
+				new Point(1200, 368),
+				};
+		
+		for(int i = 0; i < DownWaitPoints.length; i++){
+			w = new Waiter(tileMap, 0, "down");
+			w.setPosition(DownWaitPoints[i].x, DownWaitPoints[i].y);
+			enemies.add(w);
+			waiters.add(w);
+		}
 		
 	}
 	
@@ -199,10 +231,14 @@ public class BlankLevel extends GameState {
 				i--;
 			}
 		}
-//		for(int i = 0; i < waiters.size(); i++){
-//			Waiter w = waiters.get(i);
-//			w.followPlayer(player);
-//		}
+		for(int i = 0; i < waiters.size(); i++){
+			Waiter w = waiters.get(i);
+			if(w.getXScreen() > 0 && w.getXScreen() < 1024){
+				if( w.getYScreen() > 0 && w.getYScreen() < 1024){
+			w.followPlayer(player);
+				}
+			}
+		}
 //		
 		for(int i = 0; i < sprinters.size(); i++){
 			Sprinter s = sprinters.get(i);
